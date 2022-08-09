@@ -1,13 +1,13 @@
 //
-//  Tests_macOSLaunchTests.swift
-//  Tests macOS
+//  MoviesNetworkUITestsLaunchTests.swift
+//  MoviesNetworkUITests
 //
 //  Created by Robson James Junior on 08/08/22.
 //
 
 import XCTest
 
-class Tests_macOSLaunchTests: XCTestCase {
+class MoviesNetworkUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
@@ -20,10 +20,7 @@ class Tests_macOSLaunchTests: XCTestCase {
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
-
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-
+        
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Launch Screen"
         attachment.lifetime = .keepAlways

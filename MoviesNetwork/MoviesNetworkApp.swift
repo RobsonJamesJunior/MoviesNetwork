@@ -1,6 +1,6 @@
 //
 //  MoviesNetworkApp.swift
-//  Shared
+//  MoviesNetwork
 //
 //  Created by Robson James Junior on 08/08/22.
 //
@@ -11,7 +11,7 @@ import SwiftUI
 struct MoviesNetworkApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeTabView()
         }
     }
 }
