@@ -28,6 +28,10 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checking default githubactions settings...
+        uses: actions/checkout@v3
+        
       # Building xcode project
       - name: Building Xcode Project...
         run: xcodebuild -scheme MoviesNetwork -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" SYMROOT=./builds clean build
