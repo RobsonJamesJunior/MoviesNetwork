@@ -41,6 +41,11 @@ jobs:
       - name: Building Xcode Project...
         run: xcodebuild -scheme MoviesNetwork -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" SYMROOT=./builds clean build
         
+      - name: Install iPhone 12 versions specific to test
+        run: |
+          sudo gem install xcode-install
+          xcversion simulators --install='iOS 14.0'
+
       # Testing Unitary Tests target...
       - name: Testing Unitary Tests in Xcode Project...
         run: xcodebuild -scheme MoviesNetworkTests -configuration "Testing" -destination 'platform=iOS Simulator,name=iPhone 12' test
