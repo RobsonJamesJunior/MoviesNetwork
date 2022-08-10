@@ -28,6 +28,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      #Adding xcode version
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '13.4'
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checking default githubactions settings...
         uses: actions/checkout@v3
