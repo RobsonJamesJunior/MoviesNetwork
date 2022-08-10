@@ -31,7 +31,7 @@ jobs:
       #Adding xcode version
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '13.4'
+          xcode-version: latest
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checking default githubactions settings...
