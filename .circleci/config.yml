@@ -7,7 +7,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  ci:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     macos:
@@ -17,21 +17,26 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run: pod install # Install CocoaPods dependencies
-      - run: fastlane scan # Run tests using Fastlane
-
+      #- run: pod install # Install CocoaPods dependencies
+      #- run: fastlane scan # Run tests using Fastlane
+      - run: xcodebuild -list -project MoviesNetwork.xcodeproj/ # List settings Xcode Project...
+      - run: xcodebuild -scheme MoviesNetwork -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" build # Building Xcode Project...
+      - run: xcrun simctl create "iphonetest" "iPhone 8"  # Install Iphone 8 Simulator Device...
+      - run: xcodebuild -project MoviesNetwork.xcodeproj -scheme MoviesNetworkTests -configuration "Testing" -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2' test # Testing Unitary Tests in Xcode Project...
+      - run: xcodebuild -project MoviesNetwork.xcodeproj -scheme MoviesNetworkUITests -configuration "Testing" -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2' test # Testing UI Tests...
+      
       # Collect XML test results data to show in the UI, and save the same XML
       # files under test-results folder in the Artifacts tab
-      - store_test_results:
-          path: test_output
-      - store_artifacts:
-          path: test_output
-          destination: scan-output
+      # - store_test_results:
+        #  path: test_output
+      #- store_artifacts:
+      #   path: test_output
+      #   destination: scan-output
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  continuos-integration: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build
+      - ci
