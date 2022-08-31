@@ -23,13 +23,33 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Testing"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES"
       localizableStringsDataGatheringEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1DB96AA028A1EC2D00CEFA96"
+               BuildableName = "MoviesNetworkTests.xctest"
+               BlueprintName = "MoviesNetworkTests"
+               ReferencedContainer = "container:MoviesNetwork.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1DB96AAA28A1EC2D00CEFA96"
+               BuildableName = "MoviesNetworkUITests.xctest"
+               BlueprintName = "MoviesNetworkUITests"
+               ReferencedContainer = "container:MoviesNetwork.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -1,0 +1,35 @@
+name: CI
+
+on: [push]
+
+jobs:   
+  CI:
+    name: CI - Build Project and Testing 
+    runs-on: macOS-latest
+
+    steps:  
+     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checking default githubactions settings...
+        uses: actions/checkout@v3
+         
+      # Using xcodebuild to xcode commands
+      
+      # Listing xcode schemes, target and anothers settings
+      - name: List settings Xcode Project...
+        run: xcodebuild -list -project MoviesNetwork.xcodeproj/
+        
+      # Building xcode project
+      - name: Building Xcode Project...
+        run: xcodebuild -scheme MoviesNetwork -configuration "Debug" -sdk "iphonesimulator" -destination "generic/platform=iOS Simulator" build
+      
+      # Install Simulator Device...
+      - name: Install Iphone 8 Simulator Device...
+        run: xcrun simctl create "iphonetest" "iPhone 8" 
+        
+      # Testing Unitary Tests...
+      - name: Testing Unitary Tests in Xcode Project...
+        run: xcodebuild -project MoviesNetwork.xcodeproj -scheme MoviesNetworkTests -configuration "Testing" -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2' test
+
+      # Testing UI Tests...
+      - name: Testing UI Tests in Xcode Project...
+        run: xcodebuild -project MoviesNetwork.xcodeproj -scheme MoviesNetworkUITests -configuration "Testing" -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2' test
